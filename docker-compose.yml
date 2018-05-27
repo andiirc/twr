@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  webpack:
+    image: jav13r/nodejs:6.14.2
+    ports:
+      - '8080:8080'
+    command: 'yarn start'
+    volumes:
+      - $PWD:/usr/src/apps/build
+    working_dir: /usr/src/apps/build
