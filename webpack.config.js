@@ -38,14 +38,15 @@ const config = {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: true,
               importLoaders: 1,
-              localIdentName: "[name]_[local]_[hash:base64]",
+              camelCase: true,
+              localIdentName: '[name]__[local]__[hash:base64:5]',
               sourceMap: true,
               minimize: true
             }
