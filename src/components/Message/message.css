@@ -27,7 +27,7 @@
   padding: 0.5em;
 }
 
-.userName{
+.userName{green
   color: #aaa;
 }
 
@@ -45,4 +45,18 @@
 
 .icon{
   margin-right: 3em;
+}
+
+.num{
+  font-size: 10pt;
+  margin-right: 3em;
+  margin-left: 0.25em;
+}
+
+.rtGreen{
+  color: #20883f;
+}
+
+.fvYellow{
+  color: #e2c400;
 }

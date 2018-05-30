@@ -10,8 +10,9 @@ class App extends Component{
     super()
     this.state ={
       user:{
-        photoUrl: '',
+        photoUrl: 'https://www.gravatar.com/avatar',
         email: 'andiirc@gmail.com',
+        displayName: 'Anderson Rodriguez',
         onOpenText: false
       }
     }
