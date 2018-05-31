@@ -19,15 +19,14 @@ class Message extends Component{
      this.setState({ pressFavorite: !this.state.pressFavorite })
   }
 
-  onPressRetweet = () =>{
+  onPressRetweet = () => {
      this.props.onRetweet()
      this.setState({ pressRetweet: !this.state.pressRetweet })
   }
 
-
   render(){
     const { text, displayName, userName, date, picture,
-      numRetweets, numFavorites} = this.props
+      numRetweets, numFavorites, onReplyTweet } = this.props
     return (
       <div className={styles.root}>
         <div className={styles.user}>
@@ -39,14 +38,16 @@ class Message extends Component{
           <span className={styles.date}>{moment(date).fromNow()}</span>
           <h3>{text}</h3>
             <div className={styles.buttons} >
-              <div className={styles.icon}><span className="fa fa-reply"></span></div>
-              <div className={(this.state.pressRetweet) ? styles.rtGreen: '' } onClick={this.onPressRetweet}>
-                <span className="fa fa-retweet"></span>
-                <span className={styles.num}>{numRetweets}</span>
+              <div className={styles.icon} onClick={onReplyTweet}>
+                <span className="fa fa-reply"></span>
               </div>
-              <div className={(this.state.pressFavorite) ? styles.fvYellow: '' } onClick={this.onPressFavorite}>
-                <span className="fa fa-star"></span>
-                <span className={styles.num}>{numFavorites}</span>
+              <div className={ (this.state.pressRetweet) ? styles.rtGreen: '' } onClick={this.onPressRetweet}>
+                <span className="fa fa-retweet"></span>
+                <span className={styles.num}>{ numRetweets }</span>
+              </div>
+              <div className={ (this.state.pressFavorite) ? styles.fvRed: '' } onClick={this.onPressFavorite}>
+                <span className="fa fa-heart"></span>
+                <span className={styles.num}>{ numFavorites }</span>
               </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 
 services:
   webpack:
@@ -7,5 +7,5 @@ services:
       - '8080:8080'
     command: 'yarn start'
     volumes:
-      - $PWD:/usr/src/apps/build
-    working_dir: /usr/src/apps/build
+      - $PWD:/usr/src/apps
+    working_dir: /usr/src/apps

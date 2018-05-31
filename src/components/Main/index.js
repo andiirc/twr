@@ -9,7 +9,8 @@ class Main extends Component{
     super(props)
 
     this.state = {
-      user: Object.assign({}, this.props.user , { retweets: []}, { favorites: []} ),
+      user: Object.assign({}, this.props.user , { retweets: [] }, { favorites: [] } ),
+      userNameToReply: '',
       openText: false,
       messages: [
         {
@@ -43,7 +44,7 @@ class Main extends Component{
 
   handleCloseText = (e) => {
     e.preventDefault()
-    this.setState({ openText: false })
+    this.setState({ openText: false, userNameToReply: '' })
   }
 
   handleSendText = (e) => {
@@ -56,12 +57,15 @@ class Main extends Component{
       displayName: displayName,
       date: Date.now(),
       picture: photoUrl,
-      text: e.target.text.value
+      text: e.target.text.value,
+      retweets: 0,
+      favorites: 0
     }
 
     this.setState({
       messages: this.state.messages.concat([newMessage]),
-      openText: false
+      openText: false,
+      userNameToReply: ''
     })
 
   }
@@ -119,12 +123,17 @@ class Main extends Component{
       }
   }
 
+  handleReplyTeewt = (msgId, userNameToReply) =>{
+    this.setState({ openText: true, userNameToReply })
+  }
+
   renderOpenText = ()=>{
     if(this.state.openText){
       return (
         <InputText
           onCloseText={this.handleCloseText}
           onSendText={this.handleSendText}
+          userNameToReply={this.state.userNameToReply}
         />
       )
     }
@@ -141,7 +150,12 @@ class Main extends Component{
           onOpenText={this.handleOpenText}
         />
         {this.renderOpenText()}
-        <MessageList messages={this.state.messages} onRetweet={this.handleRetweet} onFavorite={this.handleFavorite} />
+        <MessageList
+          messages={this.state.messages}
+          onRetweet={this.handleRetweet}
+          onFavorite={this.handleFavorite}
+          onReplyTweet={this.handleReplyTeewt}
+        />
       </div>
     )
   }
