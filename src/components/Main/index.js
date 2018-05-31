@@ -79,6 +79,18 @@ class Main extends Component{
       user.retweets.push(msgId)
       this.setState({ messages, user })
     }
+
+    if(alreadyRetweet.length === 1){
+      let messages = this.state.messages.map(msg=>{
+        if(msg.id == msgId) msg.retweets--
+          return msg
+      })
+
+      let user = Object.assign({}, this.state.user)
+      user.retweets.splice(msgId, 1)
+      this.setState({ messages, user })
+    }
+
   }
 
   handleFavorite = (msgId) => {
@@ -92,6 +104,17 @@ class Main extends Component{
 
         let user = Object.assign({}, this.state.user)
         user.favorites.push(msgId)
+        this.setState({ messages, user })
+      }
+
+      if(alreadyFavorite.length === 1){
+        let messages = this.state.messages.map(msg=>{
+          if(msg.id == msgId) msg.favorites--
+            return msg
+        })
+
+        let user = Object.assign({}, this.state.user)
+        user.favorites.splice(msgId, 1)
         this.setState({ messages, user })
       }
   }

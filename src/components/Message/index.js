@@ -16,12 +16,12 @@ class Message extends Component{
 
   onPressFavorite = () => {
      this.props.onFavorite()
-     this.setState({ pressFavorite: true })
+     this.setState({ pressFavorite: !this.state.pressFavorite })
   }
 
   onPressRetweet = () =>{
      this.props.onRetweet()
-     this.setState({ pressRetweet: true})
+     this.setState({ pressRetweet: !this.state.pressRetweet })
   }
 
 
