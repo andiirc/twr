@@ -38,13 +38,13 @@ class Message extends Component{
           <span className={styles.userName}>{userName}</span>
           <span className={styles.date}>{moment(date).fromNow()}</span>
           <h3>{text}</h3>
-            <div className={(this.state.pressRetweet) ? styles.rtGreen: '' }>
+            <div className={styles.buttons} >
               <div className={styles.icon}><span className="fa fa-reply"></span></div>
-              <div className={styles.icon} onClick={this.onPressRetweet}>
+              <div className={(this.state.pressRetweet) ? styles.rtGreen: '' } onClick={this.onPressRetweet}>
                 <span className="fa fa-retweet"></span>
                 <span className={styles.num}>{numRetweets}</span>
               </div>
-              <div className={(this.state.pressRetweet) ? styles.fvYellow: '' } onClick={this.onPressFavorite}>
+              <div className={(this.state.pressFavorite) ? styles.fvYellow: '' } onClick={this.onPressFavorite}>
                 <span className="fa fa-star"></span>
                 <span className={styles.num}>{numFavorites}</span>
               </div>

@@ -7,9 +7,9 @@ import ProfileBar from '../ProfileBar'
 class Main extends Component{
   constructor(props){
     super(props)
-    const { user } = this.props.user
+
     this.state = {
-      user: Object.assign({}, user , { retweets: []}, { favorites: []} ),
+      user: Object.assign({}, this.props.user , { retweets: []}, { favorites: []} ),
       openText: false,
       messages: [
         {
@@ -67,39 +67,33 @@ class Main extends Component{
   }
 
   handleRetweet = (msgId) => {
-    const { retweets } = this.state.user
-    let alreadyRetweet = retweets.filter( rt => rt === msgId )
+    let alreadyRetweet = this.state.user.retweets.filter( rt => rt === msgId )
 
-    if(alreadyRetweet === 0){
-      let messages = this.state.message.map(mgs=>{
-        if(msg.id == msgId) mgs.retweets++
-
-          return mgs
+    if(alreadyRetweet.length === 0){
+      let messages = this.state.messages.map(msg=>{
+        if(msg.id == msgId) msg.retweets++
+          return msg
       })
 
       let user = Object.assign({}, this.state.user)
       user.retweets.push(msgId)
-
       this.setState({ messages, user })
-
     }
   }
 
   handleFavorite = (msgId) => {
-    const { favorites } = this.state.user
-    let alreadyFavorite = favorites.filter( fav => fav === msgId )
+    let alreadyFavorite = this.state.user.favorites.filter( fav => fav === msgId )
+
       if(alreadyFavorite.length === 0){
-        let messages = this.state.message.map(mgs=>{
-          if(msg.id == msgId) mgs.favorites++
-
-            return mgs
+        let messages = this.state.messages.map(msg=>{
+          if(msg.id == msgId) msg.favorites++
+            return msg
         })
+
+        let user = Object.assign({}, this.state.user)
+        user.favorites.push(msgId)
+        this.setState({ messages, user })
       }
-
-    let user = Object.assign({}, this.state.user)
-    user.favorites.push(msgId)
-
-    this.setState({ messages, user })
   }
 
   renderOpenText = ()=>{

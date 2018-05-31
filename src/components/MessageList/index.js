@@ -10,7 +10,7 @@ class MessageList extends Component{
    }
 
   render(){
-    const { messages, onRetweet, onFavorite } = this.props
+    const { messages } = this.props
     return (
       <div className={styles.root}>
         { messages.map( (msg) =>
@@ -23,8 +23,8 @@ class MessageList extends Component{
                 picture={msg.picture}
                 numRetweets={msg.retweets}
                 numFavorites={msg.favorites}
-                onRetweet={ ()=> onRetweet(msg.id) }
-                onFavorite={ ()=> onFavorite(msg.id) }
+                onRetweet={ () => this.props.onRetweet(msg.id) }
+                onFavorite={ ()=> this.props.onFavorite(msg.id) }
             />
           ).reverse() }
       </div>
